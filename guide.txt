@@ -1,0 +1,28 @@
+nest new auth
+npm run start:dev
+
+nest g module auth
+nest g controller auth
+nest g service auth
+
+
+nest generate resource user <- ugyan ezeet létrehozza
+
+npm i @nestjs/jwt @nestjs/passport passport passport-jwt passport-local
+npm i -D  @types/passport-jwt
+npm i -D  @types/passport-local
+
+npm i @nestjs/confi
+
+először fut a guide, utána a strategy
+
+
+
+DB:
+npm i @nestjs/typeorm mysql2 typeorm
+
+npm i --save bcrypt
+
+
+validators: 
+npm i --save class-validator class-transformer
