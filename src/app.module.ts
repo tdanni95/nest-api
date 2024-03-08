@@ -5,6 +5,8 @@ import { AuthModule } from './auth/auth.module';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UserEntity } from './common/typeorm/entities/user.entity';
+import { VideoGameModule } from './video-game/video-game.module';
+import { UserGameListEntity } from './common/typeorm/entities/user-gamelist.entity';
 
 
 @Module({
@@ -20,10 +22,11 @@ import { UserEntity } from './common/typeorm/entities/user.entity';
         username: configService.getOrThrow('DATABASE_USERNAME'),
         password: configService.getOrThrow('DATABASE_PASSWORD'),
         database: configService.getOrThrow('DATABASE_NAME'),
-        entities: [UserEntity],
+        entities: [UserGameListEntity, UserEntity],
         synchronize: true
       })
     }),
+    VideoGameModule,
   ],
   controllers: [AppController],
   providers: [AppService],

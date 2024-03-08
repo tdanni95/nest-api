@@ -11,8 +11,6 @@ export class LocalStrategy extends PassportStrategy(Strategy) {
   }
 
   validate(username: string, password: string) {
-    console.log('strategy');
-    
     const userOrNull = this.authService.validateUser({ username, password });
 
     if(!userOrNull) throw new UnauthorizedException(AuthErrors.InvalidCredentials)

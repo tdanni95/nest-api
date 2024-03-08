@@ -11,6 +11,7 @@ import { AuthService } from './auth.service';
 import { LocalGuard } from './guards/local.guard';
 import { Request } from 'express';
 import { JwtAuthGuard } from './guards/jwt.guard';
+import { UserEntity } from 'src/common/typeorm/entities/user.entity';
 
 @Controller('auth')
 export class AuthController {
@@ -32,7 +33,6 @@ export class AuthController {
   @Get('status')
   @UseGuards(JwtAuthGuard)
   status(@Req() request: Request){
-    console.log("in auth controller status method");
     return request.user
   }
 }
