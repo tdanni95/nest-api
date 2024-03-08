@@ -22,6 +22,9 @@ export class UserGameListEntity {
   @IsIn([1, 2, 3, 4, 5], { message: 'Rating must be between 1 and 5.' })
   rating: number;
 
+  @Column('text', {nullable: true})
+  review: string
+
   @ManyToOne(() => UserEntity, (user) => user.userVideoGames)
   @JoinColumn({ name: 'userId' })
   user: UserEntity;

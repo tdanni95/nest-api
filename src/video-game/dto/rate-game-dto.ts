@@ -1,4 +1,4 @@
-import { IsInt, IsNumber, Max, Min } from "class-validator"
+import { IsInt, IsNumber, Max, Min, MinLength, minLength } from "class-validator"
 
 export class RateGameDto{
     @IsNumber()
@@ -8,4 +8,7 @@ export class RateGameDto{
     @Max(5)
     @IsInt()
     rating: number
+
+    @MinLength(10)
+    review: string
 }

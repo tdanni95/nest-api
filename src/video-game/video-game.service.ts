@@ -49,6 +49,7 @@ export class VideoGameService {
       throw new BadRequestException(VideoGameErrors.NotOnYOurList);
 
     gameListItem.rating = rateGameDto.rating;
+    gameListItem.review = rateGameDto.review
 
     try {
       return await this.userGameRepository.save(gameListItem);
