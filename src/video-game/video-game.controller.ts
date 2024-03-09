@@ -6,6 +6,7 @@ import {
   Param,
   Post,
   Put,
+  Query,
   Req,
   UseGuards,
 } from '@nestjs/common';
@@ -33,13 +34,13 @@ export class VideoGameController {
   }
   
   @Get('genres/:genreId')
-  getGamesByGenre(@Param() param: any) {
-    return this.igdbService.gamesByGenre(param.genreId);
+  getGamesByGenre(@Param('genreId') genreId: string, @Query('startAt') offset: number = 0) {
+    return this.igdbService.gamesByGenre(genreId, offset);
   }
 
-  @Get('cover/:coverId')
-  getCover(@Param() param: any){
-    return this.igdbService.getCover(param.coverId)
+  @Get('cover/:gameId')
+  getCover(@Param('gameId') gameId: string){
+    return this.igdbService.getCoverForGameId(gameId)
   }
 
   @Post()
