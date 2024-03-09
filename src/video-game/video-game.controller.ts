@@ -15,11 +15,12 @@ import { GameIdDto } from './dto/game-id-dto';
 import { Request } from 'express';
 import { UserEntity } from 'src/common/typeorm/entities/user.entity';
 import { RateGameDto } from './dto/rate-game-dto';
+import { IgdbService } from './igdb.service';
 
 @Controller('video-game')
 @UseGuards(JwtAuthGuard)
 export class VideoGameController {
-  constructor(private readonly videoGameService: VideoGameService) {}
+  constructor(private readonly videoGameService: VideoGameService, private readonly igdbService: IgdbService) {}
 
   @Get('my-games')
   getMyGames() {
@@ -27,11 +28,18 @@ export class VideoGameController {
   }
 
   @Get('genres')
-  getGenres() {}
+  getGenres() {
+    return this.igdbService.genres()
+  }
   
-  @Get('genres/:genre')
+  @Get('genres/:genreId')
   getGamesByGenre(@Param() param: any) {
-    return param.genre;
+    return this.igdbService.gamesByGenre(param.genreId);
+  }
+
+  @Get('cover/:coverId')
+  getCover(@Param() param: any){
+    return this.igdbService.getCover(param.coverId)
   }
 
   @Post()
