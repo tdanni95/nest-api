@@ -11,7 +11,7 @@ export class IgdbService {
 
   async genres() {
     const endpoint = 'genres';
-    const query = 'fields checksum,name,slug; limit 500;';
+    const query = 'fields name; limit 500; sort name asc;';
 
     const genresResponse = await this.makeRequest(endpoint, query);
 

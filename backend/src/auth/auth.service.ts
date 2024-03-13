@@ -40,12 +40,13 @@ export class AuthService {
   }
 
   async validateUser({ username, password }: LoginDto) {
+    
     const findUser = await this.findUserByUsernameCaseInsenstivve(username);
     if (!findUser)
-      throw new UnauthorizedException(AuthErrors.InvalidCredentials);
-
-    const isPasswordCorredt = await bcrypt.compare(password, findUser.password);
-
+    throw new UnauthorizedException(AuthErrors.InvalidCredentials);
+  
+  const isPasswordCorredt = await bcrypt.compare(password, findUser.password);
+  
     if (!isPasswordCorredt)
       throw new UnauthorizedException(AuthErrors.InvalidCredentials);
 
@@ -53,7 +54,10 @@ export class AuthService {
       id: findUser.id,
       username: findUser.username,
     };
-    return { token: this.jwtService.sign(tokenPayload) };
+    return {
+      token: this.jwtService.sign(tokenPayload),
+      user: tokenPayload,
+    };
   }
 
   private async findUserByUsernameCaseInsenstivve(username: string) {

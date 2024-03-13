@@ -3,12 +3,12 @@ import React, { useState } from "react";
 
 interface AuthProps {
   submitLabel: string;
-  onSubmit: (credentials: { email: string; password: string }) => Promise<void>;
+  onSubmit: (credentials: { username: string; password: string }) => Promise<void>;
   children: React.ReactNode
 }
 
 const Auth = ({ submitLabel, onSubmit, children }: AuthProps) => {
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   return (
@@ -25,11 +25,11 @@ const Auth = ({ submitLabel, onSubmit, children }: AuthProps) => {
       }}
     >
       <TextField
-        type="email"
-        label="Email"
+        type="text"
+        label="Username"
         variant="outlined"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
+        value={username}
+        onChange={(e) => setUsername(e.target.value)}
       />
       <TextField
         type="password"
@@ -38,7 +38,7 @@ const Auth = ({ submitLabel, onSubmit, children }: AuthProps) => {
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
-      <Button variant="contained" onClick={() => onSubmit({ email, password })}>
+      <Button variant="contained" onClick={() => onSubmit({ username, password })}>
         {submitLabel}
       </Button>
       {children}
